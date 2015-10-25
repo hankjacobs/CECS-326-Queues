@@ -22,6 +22,7 @@ Both child processes use message type mtype = 113 and 114.
 #include <unistd.h>
 #include <sys/wait.h>
 #include <cstdlib>
+
 using namespace std;
 
 int main() {

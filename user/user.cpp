@@ -9,64 +9,69 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
+#include <cerrno>
 #include <cstring>
 #include <iostream>
 #include <unistd.h>
 #include <sys/wait.h>
 #include <cstdlib>
 #include "compute.h"
+#include "common.h"
+#include <sys/time.h>
 
 using namespace std;
 
-static const int PAYLOAD_SIZE = 2048;
-static const int MAX_QUEUE_SIZE = 3072;
-
-typedef struct {
-    int size;
-    char payload[PAYLOAD_SIZE];
-} request;
-
-typedef struct {
-    long mtype;
-    request req;
-} request_buf;
 
 int main() {
     
-    int qid = msgget(ftok(".",'u'), IPC_R|IPC_W|IPC_M);
+    int qid = msgget(ftok(".",'u'), 010600);
     
     if (errno) {
         cout << "Error: " << errno << endl;
+        return 0;
     }
     
     cout << "starting up" << endl;
 
     
-    srand((unsigned int)time(NULL));
-    
     for (int i = 0; i < 100; i++) {
         
-        request_buf req_buf;
-        req_buf.mtype = getpid();
-        req_buf.req.size = (rand() % 1024) + 1025;
+        // The following chunk of code is to work around the fact that
+        // the "compute()" function calls srand internally.
+        // Due that fact, calling compute() within a loop (as we are)
+        // will cause the rand() function used below to return the same value
+        // we work around this by seeding every loop iteration using
+        // microseconds (so we are sure it will change)
+        struct timeval tv;
+        gettimeofday(&tv,NULL);
+        srand(tv.tv_usec);
+        
+        request_msg req_msg = {};
+        req_msg.mtype = MTYPE_MANAGER;
+        req_msg.req.sender = getpid();
+        req_msg.req.size = (rand() % 1921) + 128; //random size with range [128, 2048]
 
-        cout << "Sending request with size: " << req_buf.req.size << endl;
-        int ret = msgsnd(qid, &req_buf, sizeof(request_buf) - sizeof(long), 0);
+        cout << "Sending request with size: " << req_msg.req.size << endl;
         
-        if (ret) {
-            cout << "Error: " << errno << endl;
+        ssize_t ret = msgsnd(qid, &req_msg, sizeof(request_msg) - sizeof(long), 1);
+        
+        if (ret == -1) {
+            cout << "Send Error: " << errno << endl;
+            return 0;
         }
         
-        request_buf res_buf;
-        msgrcv(qid, &res_buf, sizeof(request_buf), getpid(), 0);
+        response_msg res_msg = {};
+        ret = msgrcv(qid, &res_msg, sizeof(response_msg) - sizeof(long), req_msg.req.sender, 0);
         
-        if (errno) {
-            cout << "Error: " << errno << endl;
+        if (ret == -1) {
+            cout << "Receive Error: " << errno << endl;
+            return 0;
         }
         
-        compute(res_buf.req.payload);
+        compute(res_msg.res.payload);
     }
-
-
+    
     return 0;
 }
+
+

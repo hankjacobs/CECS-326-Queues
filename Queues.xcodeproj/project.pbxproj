@@ -71,6 +71,7 @@
 		849FAB351BD7160E00904DAC /* msgQ_B */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = msgQ_B; sourceTree = BUILT_PRODUCTS_DIR; };
 		849FAB3C1BD7163900904DAC /* msgQ_A.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = msgQ_A.cpp; sourceTree = "<group>"; };
 		849FAB3E1BD7164600904DAC /* msgQ_B.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = msgQ_B.cpp; sourceTree = "<group>"; };
+		849FAB401BD9B53500904DAC /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +162,7 @@
 				849FAB161BD70FB000904DAC /* device.h */,
 				849FAB201BD7119400904DAC /* compute_shim.cpp */,
 				849FAB231BD7119E00904DAC /* device_shim.cpp */,
+				849FAB401BD9B53500904DAC /* common.h */,
 			);
 			path = common;
 			sourceTree = SOURCE_ROOT;
@@ -503,6 +505,7 @@
 				849FAB071BD70F4600904DAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		849FAB111BD70F9600904DAC /* Build configuration list for PBXNativeTarget "user" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +514,7 @@
 				849FAB131BD70F9600904DAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		849FAB2E1BD7160700904DAC /* Build configuration list for PBXNativeTarget "msgQ_A" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +523,7 @@
 				849FAB301BD7160700904DAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		849FAB391BD7160E00904DAC /* Build configuration list for PBXNativeTarget "msgQ_B" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +532,7 @@
 				849FAB3B1BD7160E00904DAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

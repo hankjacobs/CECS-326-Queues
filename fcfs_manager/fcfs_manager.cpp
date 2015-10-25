@@ -9,68 +9,72 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
+#include <cerrno>
 #include <cstring>
 #include <iostream>
 #include <unistd.h>
 #include <sys/wait.h>
 #include <cstdlib>
+#include "compute.h"
+#include "common.h"
 #include "device.h"
-#include <errno.h>
 
 using namespace std;
 
-static const int PAYLOAD_SIZE = 2048;
-static const int MAX_QUEUE_SIZE = 3072;
+static volatile sig_atomic_t sig_caught = 0;
 
-typedef struct {
-    int size;
-    char payload[PAYLOAD_SIZE];
-} request;
-
-typedef struct {
-    long mtype;
-    request req;
-} request_buf;
+void handle_sigint(int signum) {
+    sig_caught = 1;
+}
 
 int main() {
     
-    int qid = msgget(ftok(".",'u'), IPC_CREAT|IPC_R|IPC_W|IPC_M);
+    int qid = msgget(ftok(".",'u'), IPC_CREAT|010600);
 
-    if (errno == EACCES) {
-        qid = msgget(ftok(".",'u'), IPC_CREAT);
-        msgctl (qid, IPC_RMID, NULL);
-        qid = msgget(ftok(".",'u'), IPC_CREAT|IPC_R|IPC_W|IPC_M);
+    if (qid == -1) {
+        cout << "msgget Error: " << errno << endl;
+        return 0;
     }
     
-    struct msqid_ds msgq;
-    int rtn = msgctl(qid, IPC_STAT, &msgq);
-    msgq.msg_qbytes = MAX_QUEUE_SIZE;
-
-    if (rtn != 0) {
-        cout << "Error: " << errno << endl;
-    }
+    signal(SIGINT, handle_sigint);
     
     while (true) {
-        request_buf req_buf;
-        msgrcv(qid, &req_buf, sizeof(request_buf), 0, 0);
         
-        if (errno) {
-            cout << "Error: " << errno << endl;
+        request_msg req_msg = {};
+        
+        ssize_t ret = msgrcv(qid, &req_msg, sizeof(request_msg) - sizeof(long), MTYPE_MANAGER, 0);
+        
+        if (sig_caught) {
+            break;
         }
         
-        cout << "Received request from " << req_buf.mtype << " for data size " << req_buf.req.size << endl;
-        
-        
-        request_buf res_buf;
-        res_buf.mtype = req_buf.mtype;
-        
-        msgsnd(qid, &req_buf, sizeof(request_buf), 0);
-        
-        if (errno) {
-            cout << "Error: " << errno << endl;
+        if (ret == -1) {
+            cout << "Receive Error: " << errno << endl;
+            return 0;
         }
         
+        cout << "Received request from " << req_msg.req.sender << " for data size " << req_msg.req.size << endl;
+        
+        response_msg res_msg = {};
+        res_msg.mtype = req_msg.req.sender;
+        res_msg.res.size = req_msg.req.size;
+        
+        fetch(res_msg.res.size, res_msg.res.payload);
+        
+        ret = msgsnd(qid, &res_msg, sizeof(request_msg) - sizeof(long), 0);
+        
+        if (sig_caught) {
+            break;
+        }
+        
+        if (ret == -1) {
+            cout << "Send Error: " << errno << endl;
+            return 0;
+        }
     }
+    
+    cout << endl << "Exiting..." << endl;
+    msgctl (qid, IPC_RMID, NULL);
     
     return 0;
 }
