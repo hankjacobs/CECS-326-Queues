@@ -7,17 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		845575161BE04A2900966553 /* sjf_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8455750A1BE049D500966553 /* sjf_manager.cpp */; };
+		845575261BE0502500966553 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 845575251BE0502500966553 /* main.cpp */; };
+		845575271BE0538F00966553 /* compute_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB201BD7119400904DAC /* compute_shim.cpp */; };
+		845575281BE0538F00966553 /* device_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB231BD7119E00904DAC /* device_shim.cpp */; };
 		849FAB1E1BD7100A00904DAC /* fcfs_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB191BD70FB000904DAC /* fcfs_manager.cpp */; };
 		849FAB1F1BD7101100904DAC /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB1B1BD70FB000904DAC /* user.cpp */; };
-		849FAB211BD7119400904DAC /* compute_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB201BD7119400904DAC /* compute_shim.cpp */; settings = {ASSET_TAGS = (); }; };
-		849FAB221BD7119400904DAC /* compute_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB201BD7119400904DAC /* compute_shim.cpp */; settings = {ASSET_TAGS = (); }; };
-		849FAB241BD7119E00904DAC /* device_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB231BD7119E00904DAC /* device_shim.cpp */; settings = {ASSET_TAGS = (); }; };
-		849FAB251BD7119E00904DAC /* device_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB231BD7119E00904DAC /* device_shim.cpp */; settings = {ASSET_TAGS = (); }; };
-		849FAB3D1BD7163900904DAC /* msgQ_A.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB3C1BD7163900904DAC /* msgQ_A.cpp */; settings = {ASSET_TAGS = (); }; };
-		849FAB3F1BD7164600904DAC /* msgQ_B.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB3E1BD7164600904DAC /* msgQ_B.cpp */; settings = {ASSET_TAGS = (); }; };
+		849FAB211BD7119400904DAC /* compute_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB201BD7119400904DAC /* compute_shim.cpp */; };
+		849FAB221BD7119400904DAC /* compute_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB201BD7119400904DAC /* compute_shim.cpp */; };
+		849FAB241BD7119E00904DAC /* device_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB231BD7119E00904DAC /* device_shim.cpp */; };
+		849FAB251BD7119E00904DAC /* device_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB231BD7119E00904DAC /* device_shim.cpp */; };
+		849FAB3D1BD7163900904DAC /* msgQ_A.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB3C1BD7163900904DAC /* msgQ_A.cpp */; };
+		849FAB3F1BD7164600904DAC /* msgQ_B.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB3E1BD7164600904DAC /* msgQ_B.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8455750D1BE04A0500966553 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		845575191BE04FEE00966553 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		849FAAFF1BD70F4600904DAC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,10 +79,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8455750A1BE049D500966553 /* sjf_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = sjf_manager.cpp; path = sjf_manager/sjf_manager.cpp; sourceTree = SOURCE_ROOT; };
+		8455750F1BE04A0500966553 /* sjf_manager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sjf_manager; sourceTree = BUILT_PRODUCTS_DIR; };
+		8455751B1BE04FEE00966553 /* user_runner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = user_runner; sourceTree = BUILT_PRODUCTS_DIR; };
+		845575251BE0502500966553 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		849FAB011BD70F4600904DAC /* fcfs_manager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fcfs_manager; sourceTree = BUILT_PRODUCTS_DIR; };
-		849FAB031BD70F4600904DAC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		849FAB0D1BD70F9600904DAC /* user */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = user; sourceTree = BUILT_PRODUCTS_DIR; };
-		849FAB0F1BD70F9600904DAC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		849FAB151BD70FB000904DAC /* compute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = compute.h; sourceTree = "<group>"; };
 		849FAB161BD70FB000904DAC /* device.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = device.h; sourceTree = "<group>"; };
 		849FAB191BD70FB000904DAC /* fcfs_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fcfs_manager.cpp; sourceTree = "<group>"; };
@@ -75,6 +99,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8455750C1BE04A0500966553 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		845575181BE04FEE00966553 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		849FAAFE1BD70F4600904DAC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -110,8 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				844C38CF1BD07D9800755C67 /* Queues */,
-				849FAB021BD70F4600904DAC /* fcfs_manager */,
-				849FAB0E1BD70F9600904DAC /* user */,
 				849FAB2B1BD7160700904DAC /* msgQ_A */,
 				849FAB361BD7160E00904DAC /* msgQ_B */,
 				844C38CE1BD07D9800755C67 /* Products */,
@@ -125,6 +161,8 @@
 				849FAB0D1BD70F9600904DAC /* user */,
 				849FAB2A1BD7160700904DAC /* msgQ_A */,
 				849FAB351BD7160E00904DAC /* msgQ_B */,
+				8455750F1BE04A0500966553 /* sjf_manager */,
+				8455751B1BE04FEE00966553 /* user_runner */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,6 +170,8 @@
 		844C38CF1BD07D9800755C67 /* Queues */ = {
 			isa = PBXGroup;
 			children = (
+				845575241BE0502500966553 /* user_runner */,
+				845575091BE049B800966553 /* sjf_manager */,
 				849FAB141BD70FB000904DAC /* common */,
 				849FAB181BD70FB000904DAC /* fcfs_manager */,
 				849FAB1A1BD70FB000904DAC /* user */,
@@ -139,21 +179,21 @@
 			path = Queues;
 			sourceTree = "<group>";
 		};
-		849FAB021BD70F4600904DAC /* fcfs_manager */ = {
+		845575091BE049B800966553 /* sjf_manager */ = {
 			isa = PBXGroup;
 			children = (
-				849FAB031BD70F4600904DAC /* main.cpp */,
+				8455750A1BE049D500966553 /* sjf_manager.cpp */,
 			);
-			path = fcfs_manager;
+			name = sjf_manager;
 			sourceTree = "<group>";
 		};
-		849FAB0E1BD70F9600904DAC /* user */ = {
+		845575241BE0502500966553 /* user_runner */ = {
 			isa = PBXGroup;
 			children = (
-				849FAB0F1BD70F9600904DAC /* main.cpp */,
+				845575251BE0502500966553 /* main.cpp */,
 			);
-			path = user;
-			sourceTree = "<group>";
+			path = user_runner;
+			sourceTree = SOURCE_ROOT;
 		};
 		849FAB141BD70FB000904DAC /* common */ = {
 			isa = PBXGroup;
@@ -202,6 +242,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8455750E1BE04A0500966553 /* sjf_manager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 845575131BE04A0500966553 /* Build configuration list for PBXNativeTarget "sjf_manager" */;
+			buildPhases = (
+				8455750B1BE04A0500966553 /* Sources */,
+				8455750C1BE04A0500966553 /* Frameworks */,
+				8455750D1BE04A0500966553 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sjf_manager;
+			productName = sjf_manager;
+			productReference = 8455750F1BE04A0500966553 /* sjf_manager */;
+			productType = "com.apple.product-type.tool";
+		};
+		8455751A1BE04FEE00966553 /* user_runner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8455751F1BE04FEE00966553 /* Build configuration list for PBXNativeTarget "user_runner" */;
+			buildPhases = (
+				845575171BE04FEE00966553 /* Sources */,
+				845575181BE04FEE00966553 /* Frameworks */,
+				845575191BE04FEE00966553 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = user_runner;
+			productName = user_runner;
+			productReference = 8455751B1BE04FEE00966553 /* user_runner */;
+			productType = "com.apple.product-type.tool";
+		};
 		849FAB001BD70F4600904DAC /* fcfs_manager */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 849FAB051BD70F4600904DAC /* Build configuration list for PBXNativeTarget "fcfs_manager" */;
@@ -279,6 +353,12 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Hank;
 				TargetAttributes = {
+					8455750E1BE04A0500966553 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					8455751A1BE04FEE00966553 = {
+						CreatedOnToolsVersion = 7.1;
+					};
 					849FAB001BD70F4600904DAC = {
 						CreatedOnToolsVersion = 7.0.1;
 					};
@@ -309,11 +389,31 @@
 				849FAB0C1BD70F9600904DAC /* user */,
 				849FAB291BD7160700904DAC /* msgQ_A */,
 				849FAB341BD7160E00904DAC /* msgQ_B */,
+				8455750E1BE04A0500966553 /* sjf_manager */,
+				8455751A1BE04FEE00966553 /* user_runner */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8455750B1BE04A0500966553 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				845575271BE0538F00966553 /* compute_shim.cpp in Sources */,
+				845575161BE04A2900966553 /* sjf_manager.cpp in Sources */,
+				845575281BE0538F00966553 /* device_shim.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		845575171BE04FEE00966553 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				845575261BE0502500966553 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		849FAAFD1BD70F4600904DAC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,6 +530,38 @@
 			};
 			name = Release;
 		};
+		845575141BE04A0500966553 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		845575151BE04A0500966553 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		845575201BE04FEE00966553 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		845575211BE04FEE00966553 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		849FAB061BD70F4600904DAC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -497,6 +629,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		845575131BE04A0500966553 /* Build configuration list for PBXNativeTarget "sjf_manager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				845575141BE04A0500966553 /* Debug */,
+				845575151BE04A0500966553 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8455751F1BE04FEE00966553 /* Build configuration list for PBXNativeTarget "user_runner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				845575201BE04FEE00966553 /* Debug */,
+				845575211BE04FEE00966553 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		849FAB051BD70F4600904DAC /* Build configuration list for PBXNativeTarget "fcfs_manager" */ = {
 			isa = XCConfigurationList;

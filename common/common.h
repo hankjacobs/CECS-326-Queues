@@ -19,10 +19,19 @@ typedef struct {
     pid_t sender;
 } request;
 
-typedef struct {
+typedef struct request_msg request_msg;
+struct request_msg {
     long mtype;
     request req;
-} request_msg;
+    
+    bool operator<(const request_msg& rhs) const {
+        return req.size < rhs.req.size;
+    }
+    
+    bool operator>(const request_msg& rhs) const {
+        return req.size > rhs.req.size;
+    }
+};
 
 typedef struct {
     int size;
