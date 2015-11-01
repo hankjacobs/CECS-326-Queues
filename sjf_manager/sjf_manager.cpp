@@ -40,7 +40,7 @@ int main() {
     
     signal(SIGINT, handle_sigint);
     
-    //Use a priority_queue where the smallest size has the highest priority
+    // Use a priority_queue where the smallest size has the highest priority
     priority_queue< request_msg, vector<request_msg>, greater<request_msg> > request_queue;
     while (true) {
         
@@ -49,7 +49,7 @@ int main() {
         ssize_t ret = 0;
         
         // If we have no backlog of requests to process,
-        // we wait until we receiving one.
+        // we wait until we receive one.
         if (request_queue.size() == 0) {
             ret = msgrcv(qid, &req_msg, sizeof(request_msg) - sizeof(long), MTYPE_MANAGER, 0);
             request_queue.push(req_msg);
@@ -66,8 +66,8 @@ int main() {
             }
         }
         
-        // Once we empty the queue, we receive and no message error
-        // we supress this error
+        // Once we empty the queue, we receive a no message error
+        // we supress this error since it is expected
         if (errno == ENOMSG) {
             ret = 0;
         }

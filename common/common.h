@@ -45,6 +45,10 @@ typedef struct {
     int buff;
 } response_msg;
 
+//Time Helpers
+long get_time_milliseconds();
+long get_time_nanoseconds();
+
 //Device Manager Helpers
 int handle_request(request_msg request, int qid);
 
