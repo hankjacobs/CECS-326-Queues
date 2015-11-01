@@ -1,10 +1,9 @@
+// Henry Jacobs and Kenny Huang
+// CECS 326
+// Queues
+// sjf_manager.cpp
 //
-//  sjf_manager.cpp
-//  Queues
-//
-//  Created by Hank Jacobs on 10/27/15.
-//  Copyright © 2015 Hank. All rights reserved.
-//
+// [Project Description]
 
 #include <sys/types.h>
 #include <sys/ipc.h>
@@ -33,7 +32,7 @@ void handle_sigint(int signum) {
 int main() {
     
     int qid = msgget(ftok(".",'u'), IPC_CREAT|010600);
-    
+    int total_requests = 0;
     if (qid == -1) {
         cout << "msgget Error: " << errno << endl;
         return 0;
@@ -43,7 +42,6 @@ int main() {
     
     //Use a priority_queue where the smallest size has the highest priority
     priority_queue< request_msg, vector<request_msg>, greater<request_msg> > request_queue;
-    
     while (true) {
         
         request_msg req_msg = {};
@@ -53,7 +51,6 @@ int main() {
         // If we have no backlog of requests to process,
         // we wait until we receiving one.
         if (request_queue.size() == 0) {
-            cout << "No backlog of requests. Waiting for new request" << endl;
             ret = msgrcv(qid, &req_msg, sizeof(request_msg) - sizeof(long), MTYPE_MANAGER, 0);
             request_queue.push(req_msg);
         }
@@ -84,13 +81,14 @@ int main() {
             return 0;
         }
         
-        cout << request_queue.size() << " pending requests." << endl;
-        
         request_msg next_request = request_queue.top();
         request_queue.pop();
-        cout << "Handling request from " << next_request.req.sender << " for data size " << next_request.req.size << endl;
-        
+
+        start_device_throughput_timer();
         ret = handle_request(next_request, qid);
+        stop_device_throughput_timer(next_request.req.size);
+        
+        total_requests++;
         
         if (sig_caught) {
             break;
@@ -103,17 +101,13 @@ int main() {
     }
     
     cout << endl << "Exiting..." << endl;
+    cout << "### Stats ###" << endl;
+    cout << "Total requests: " << total_requests << endl;
+    cout << "Total bytes read: " << get_total_bytes_read() << endl;
+    cout << "Average bytes per millisecond: " << get_average_device_throughput() << endl;
+    
     msgctl (qid, IPC_RMID, NULL);
     
     return 0;
 }
 
-int handle_request(request_msg request, int qid) {
-    response_msg res_msg = {};
-    res_msg.mtype = request.req.sender;
-    res_msg.res.size = request.req.size;
-    
-    fetch(res_msg.res.size, res_msg.res.payload);
-    
-    return msgsnd(qid, &res_msg, sizeof(request_msg) - sizeof(long), 0);
-}

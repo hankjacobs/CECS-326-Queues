@@ -1,10 +1,9 @@
+// Henry Jacobs and Kenny Huang
+// CECS 326
+// Queues
+// fcfs_manager.cpp
 //
-//  fcfs_manager.cpp
-//  Queues
-//
-//  Created by Hank Jacobs on 10/15/15.
-//  Copyright © 2015 Hank. All rights reserved.
-//
+// [Project Description]
 
 #include <sys/types.h>
 #include <sys/ipc.h>
@@ -30,7 +29,7 @@ void handle_sigint(int signum) {
 int main() {
     
     int qid = msgget(ftok(".",'u'), IPC_CREAT|010600);
-
+    int total_requests = 0;
     if (qid == -1) {
         cout << "msgget Error: " << errno << endl;
         return 0;
@@ -53,15 +52,9 @@ int main() {
             return 0;
         }
         
-        cout << "Received request from " << req_msg.req.sender << " for data size " << req_msg.req.size << endl;
-        
-        response_msg res_msg = {};
-        res_msg.mtype = req_msg.req.sender;
-        res_msg.res.size = req_msg.req.size;
-        
-        fetch(res_msg.res.size, res_msg.res.payload);
-        
-        ret = msgsnd(qid, &res_msg, sizeof(request_msg) - sizeof(long), 0);
+        start_device_throughput_timer();
+        ret = handle_request(req_msg, qid);
+        stop_device_throughput_timer(req_msg.req.size);
         
         if (sig_caught) {
             break;
@@ -71,9 +64,16 @@ int main() {
             cout << "Send Error: " << errno << endl;
             return 0;
         }
+        
+        total_requests++;
     }
     
     cout << endl << "Exiting..." << endl;
+    cout << "### Stats ###" << endl;
+    cout << "Total requests: " << total_requests << endl;
+    cout << "Total bytes read: " << get_total_bytes_read() << endl;
+    cout << "Average bytes per millisecond: " << get_average_device_throughput() << endl;
+    
     msgctl (qid, IPC_RMID, NULL);
     
     return 0;

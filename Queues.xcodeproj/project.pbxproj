@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840577421BE6B1DB001C4707 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 840577411BE6B1DB001C4707 /* common.cpp */; };
+		840577431BE6B1DB001C4707 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 840577411BE6B1DB001C4707 /* common.cpp */; };
+		840577441BE6B1DB001C4707 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 840577411BE6B1DB001C4707 /* common.cpp */; };
 		845575161BE04A2900966553 /* sjf_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8455750A1BE049D500966553 /* sjf_manager.cpp */; };
-		845575261BE0502500966553 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 845575251BE0502500966553 /* main.cpp */; };
+		845575261BE0502500966553 /* user_runner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 845575251BE0502500966553 /* user_runner.cpp */; };
 		845575271BE0538F00966553 /* compute_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB201BD7119400904DAC /* compute_shim.cpp */; };
 		845575281BE0538F00966553 /* device_shim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB231BD7119E00904DAC /* device_shim.cpp */; };
 		849FAB1E1BD7100A00904DAC /* fcfs_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849FAB191BD70FB000904DAC /* fcfs_manager.cpp */; };
@@ -79,10 +82,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		840577411BE6B1DB001C4707 /* common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = common.cpp; sourceTree = "<group>"; };
 		8455750A1BE049D500966553 /* sjf_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = sjf_manager.cpp; path = sjf_manager/sjf_manager.cpp; sourceTree = SOURCE_ROOT; };
 		8455750F1BE04A0500966553 /* sjf_manager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sjf_manager; sourceTree = BUILT_PRODUCTS_DIR; };
 		8455751B1BE04FEE00966553 /* user_runner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = user_runner; sourceTree = BUILT_PRODUCTS_DIR; };
-		845575251BE0502500966553 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		845575251BE0502500966553 /* user_runner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_runner.cpp; sourceTree = "<group>"; };
 		849FAB011BD70F4600904DAC /* fcfs_manager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fcfs_manager; sourceTree = BUILT_PRODUCTS_DIR; };
 		849FAB0D1BD70F9600904DAC /* user */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = user; sourceTree = BUILT_PRODUCTS_DIR; };
 		849FAB151BD70FB000904DAC /* compute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = compute.h; sourceTree = "<group>"; };
@@ -190,7 +194,7 @@
 		845575241BE0502500966553 /* user_runner */ = {
 			isa = PBXGroup;
 			children = (
-				845575251BE0502500966553 /* main.cpp */,
+				845575251BE0502500966553 /* user_runner.cpp */,
 			);
 			path = user_runner;
 			sourceTree = SOURCE_ROOT;
@@ -203,6 +207,7 @@
 				849FAB201BD7119400904DAC /* compute_shim.cpp */,
 				849FAB231BD7119E00904DAC /* device_shim.cpp */,
 				849FAB401BD9B53500904DAC /* common.h */,
+				840577411BE6B1DB001C4707 /* common.cpp */,
 			);
 			path = common;
 			sourceTree = SOURCE_ROOT;
@@ -402,6 +407,7 @@
 			files = (
 				845575271BE0538F00966553 /* compute_shim.cpp in Sources */,
 				845575161BE04A2900966553 /* sjf_manager.cpp in Sources */,
+				840577441BE6B1DB001C4707 /* common.cpp in Sources */,
 				845575281BE0538F00966553 /* device_shim.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,7 +416,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				845575261BE0502500966553 /* main.cpp in Sources */,
+				845575261BE0502500966553 /* user_runner.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +426,7 @@
 			files = (
 				849FAB211BD7119400904DAC /* compute_shim.cpp in Sources */,
 				849FAB1E1BD7100A00904DAC /* fcfs_manager.cpp in Sources */,
+				840577421BE6B1DB001C4707 /* common.cpp in Sources */,
 				849FAB241BD7119E00904DAC /* device_shim.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +437,7 @@
 			files = (
 				849FAB221BD7119400904DAC /* compute_shim.cpp in Sources */,
 				849FAB1F1BD7101100904DAC /* user.cpp in Sources */,
+				840577431BE6B1DB001C4707 /* common.cpp in Sources */,
 				849FAB251BD7119E00904DAC /* device_shim.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -637,6 +645,7 @@
 				845575151BE04A0500966553 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8455751F1BE04FEE00966553 /* Build configuration list for PBXNativeTarget "user_runner" */ = {
 			isa = XCConfigurationList;
@@ -645,6 +654,7 @@
 				845575211BE04FEE00966553 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		849FAB051BD70F4600904DAC /* Build configuration list for PBXNativeTarget "fcfs_manager" */ = {
 			isa = XCConfigurationList;

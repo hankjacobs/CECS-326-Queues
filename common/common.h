@@ -1,13 +1,14 @@
+// Henry Jacobs and Kenny Huang
+// CECS 326
+// Queues
+// common.h
 //
-//  common.h
-//  Queues
-//
-//  Created by Hank Jacobs on 10/22/15.
-//  Copyright © 2015 Hank. All rights reserved.
-//
+// [Project Description]
 
 #ifndef common_h
 #define common_h
+
+#include <sys/types.h>
 
 static const int PAYLOAD_SIZE = 2048;
 static const int MAX_QUEUE_SIZE = PAYLOAD_SIZE + 1024;
@@ -44,5 +45,19 @@ typedef struct {
     int buff;
 } response_msg;
 
+//Device Manager Helpers
+int handle_request(request_msg request, int qid);
+
+//Data throughput
+void start_device_throughput_timer();
+void stop_device_throughput_timer(int bytes_read);
+double get_average_device_throughput();
+int get_total_bytes_read();
+
+//Completion time
+void start_completion_timer();
+void stop_completion_timer();
+long double get_average_completion_time();
+long double get_total_completion_time();
 
 #endif /* common_h */
