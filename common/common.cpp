@@ -5,15 +5,16 @@
 //
 // [Project Description]
 
-#include <inttypes.h>
-#include <stdio.h>
+#include <iostream>
 #include <time.h>
 #include <sys/time.h>
-#include "common.h"
 #include <sys/ipc.h>
 #include <sys/msg.h>
+#include "common.h"
 #include "compute.h"
 #include "device.h"
+
+using namespace std;
 
 static long total_milliseconds = 0;
 static int total_bytes_read = 0;
@@ -41,7 +42,10 @@ long get_time_nanoseconds() {
     clock_gettime(CLOCK_REALTIME, &tps);
     
     return tps.tv_sec * 1e+9 + tps.tv_nsec;
-    
+}
+
+long get_relative_time(long start_time, long current_time) {
+    return current_time - start_time;
 }
 
 static long start_time = 0.0;
@@ -63,6 +67,16 @@ double get_average_device_throughput() {
 
 int get_total_bytes_read() {
     return total_bytes_read;
+}
+
+void print_bytes_per_millisecond(ostream& out, long relative_start, long relative_end, int number_of_bytes) {
+    
+    long total_relative_ms = relative_end - relative_start;
+    double bytes_per_ms = total_relative_ms == 0 ? 0 : number_of_bytes/total_relative_ms;
+    
+    for (int i = 0; i < total_relative_ms; i++) {
+        out << relative_start + i << ", " << bytes_per_ms << endl;
+    }
 }
 
 static long double completion_start_time = 0.0;

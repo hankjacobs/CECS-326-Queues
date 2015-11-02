@@ -4,11 +4,9 @@
 // common.h
 //
 // [Project Description]
-
-#ifndef common_h
-#define common_h
-
 #include <sys/types.h>
+#include <iostream>
+
 
 static const int PAYLOAD_SIZE = 2048;
 static const int MAX_QUEUE_SIZE = PAYLOAD_SIZE + 1024;
@@ -48,6 +46,7 @@ typedef struct {
 //Time Helpers
 long get_time_milliseconds();
 long get_time_nanoseconds();
+long get_relative_time(long start_time, long current_time);
 
 //Device Manager Helpers
 int handle_request(request_msg request, int qid);
@@ -57,6 +56,7 @@ void start_device_throughput_timer();
 void stop_device_throughput_timer(int bytes_read);
 double get_average_device_throughput();
 int get_total_bytes_read();
+void print_bytes_per_millisecond(std::ostream& o, long relative_start, long relative_end, int number_of_bytes);
 
 //Completion time
 void start_completion_timer();
@@ -64,4 +64,3 @@ void stop_completion_timer();
 long double get_average_completion_time();
 long double get_total_completion_time();
 
-#endif /* common_h */

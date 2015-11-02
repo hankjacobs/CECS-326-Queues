@@ -15,6 +15,7 @@
 #include <sys/wait.h>
 #include <cstdlib>
 #include <queue>
+#include <fstream>
 #include "compute.h"
 #include "common.h"
 #include "device.h"
@@ -31,8 +32,14 @@ void handle_sigint(int signum) {
 
 int main() {
     
+    ofstream outfile;
+    outfile.open("sjf_manager.csv", ios::out | ios::trunc);
+    outfile << "time (ms), bytes" << endl;
+    
     int qid = msgget(ftok(".",'u'), IPC_CREAT|010600);
     int total_requests = 0;
+    long start_time = get_time_milliseconds();
+    
     if (qid == -1) {
         cout << "msgget Error: " << errno << endl;
         return 0;
@@ -43,9 +50,8 @@ int main() {
     // Use a priority_queue where the smallest size has the highest priority
     priority_queue< request_msg, vector<request_msg>, greater<request_msg> > request_queue;
     while (true) {
-        
+        long wait_start = get_relative_time(start_time, get_time_milliseconds());
         request_msg req_msg = {};
-        
         ssize_t ret = 0;
         
         // If we have no backlog of requests to process,
@@ -83,10 +89,18 @@ int main() {
         
         request_msg next_request = request_queue.top();
         request_queue.pop();
-
+        
+        long wait_end = get_relative_time(start_time, get_time_milliseconds());
+        print_bytes_per_millisecond(outfile, wait_start, wait_end, 0);
+        
+        long read_start = get_relative_time(start_time, get_time_milliseconds());
+        
         start_device_throughput_timer();
         ret = handle_request(next_request, qid);
         stop_device_throughput_timer(next_request.req.size);
+        
+        long read_end = get_relative_time(start_time, get_time_milliseconds());
+        print_bytes_per_millisecond(outfile, read_start, read_end, next_request.req.size);
         
         total_requests++;
         
@@ -106,6 +120,7 @@ int main() {
     cout << "Total bytes read: " << get_total_bytes_read() << endl;
     cout << "Average bytes per millisecond: " << get_average_device_throughput() << endl;
     
+    outfile.close();
     msgctl (qid, IPC_RMID, NULL);
     
     return 0;
